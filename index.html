@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Days Since Scott &amp; Igor Played General Orders</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Courier New", Courier, monospace;
+    background: repeating-linear-gradient(
+      45deg,
+      #f4c430,
+      #f4c430 40px,
+      #2b2b2b 40px,
+      #2b2b2b 80px
+    );
+  }
+
+  .sign {
+    background: #fffbe8;
+    border: 10px solid #2b2b2b;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    padding: 3rem 3.5rem;
+    text-align: center;
+    max-width: 640px;
+    margin: 2rem;
+  }
+
+  .bolts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .bolt {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ccc, #555);
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2b2b2b;
+    line-height: 1.5;
+  }
+
+  .counter {
+    font-size: 7rem;
+    font-weight: bold;
+    color: #b3001b;
+    background: #1a1a1a;
+    border: 4px inset #555;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 0.5rem 2.5rem;
+    margin: 1.5rem 0;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 12px rgba(255, 40, 60, 0.8);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fffbe8;
+    background: #b3001b;
+    border: none;
+    border-bottom: 6px solid #6e0011;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: transform 0.05s ease;
+  }
+
+  button:hover { background: #d40020; }
+  button:active {
+    transform: translateY(4px);
+    border-bottom-width: 2px;
+  }
+
+  .celebration {
+    margin-top: 1.25rem;
+    font-size: 1.1rem;
+    color: #2b7a2b;
+    font-weight: bold;
+    min-height: 1.4rem;
+  }
+</style>
+</head>
+<body>
+  <div class="sign">
+    <div class="bolts"><div class="bolt"></div><div class="bolt"></div></div>
+    <h1>Days Since Scott &amp; Igor<br>Played General Orders</h1>
+    <div class="counter" id="days">0</div>
+    <p class="subtitle">This workplace-safety-style sign is legally binding.</p>
+    <button id="playedBtn">Played General Orders</button>
+    <p class="celebration" id="celebration"></p>
+    <div class="bolts" style="margin-top:1.5rem; margin-bottom:0;"><div class="bolt"></div><div class="bolt"></div></div>
+  </div>
+
+<script>
+  const DEFAULT_LAST_PLAYED = "2026-06-15";
+  const STORAGE_KEY = "lastPlayedGeneralOrders";
+
+  function daysSince(dateStr) {
+    const [y, m, d] = dateStr.split("-").map(Number);
+    const last = new Date(y, m - 1, d);
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.max(0, Math.round((today - last) / 86400000));
+  }
+
+  function render() {
+    const lastPlayed = localStorage.getItem(STORAGE_KEY) || DEFAULT_LAST_PLAYED;
+    document.getElementById("days").textContent = daysSince(lastPlayed);
+  }
+
+  document.getElementById("playedBtn").addEventListener("click", () => {
+    const now = new Date();
+    const today = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0"),
+    ].join("-");
+    localStorage.setItem(STORAGE_KEY, today);
+    render();
+    document.getElementById("celebration").textContent =
+      "Huzzah! The generals have issued their orders. 🎖️";
+  });
+
+  render();
+</script>
+</body>
+</html>
