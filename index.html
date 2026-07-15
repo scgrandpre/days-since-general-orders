@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  DAYS SINCE SCOTT & IGOR PLAYED GENERAL ORDERS
+  ============================================================
+  Architecture: hyperscale-ready static HTML (zero dependencies,
+  zero build steps, zero excuses).
+
+  If you are reading this source code, you are probably Igor.
+  Hello, Igor. The button knows what you did on 2026-07-15.
+
+  Try the Konami code. Open the console. Trust nothing.
+  ============================================================
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,6 +23,7 @@
   body {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: "Courier New", Courier, monospace;
@@ -20,6 +34,37 @@
       #2b2b2b 40px,
       #2b2b2b 80px
     );
+    transition: filter 1s ease;
+  }
+
+  body.defcon-2, body.defcon-1 {
+    animation: alarm-bg 1.2s infinite alternate;
+  }
+  @keyframes alarm-bg {
+    from { filter: none; }
+    to   { filter: hue-rotate(-45deg) saturate(2); }
+  }
+
+  body.eulogy-mode { filter: sepia(0.7) contrast(0.9); }
+
+  .defcon-banner {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    color: #fffbe8;
+    background: #2b7a2b;
+  }
+  .defcon-banner.level-4 { background: #b8a000; }
+  .defcon-banner.level-3 { background: #cc6a00; }
+  .defcon-banner.level-2 { background: #b3001b; animation: banner-flash 0.8s infinite alternate; }
+  .defcon-banner.level-1 { background: #000; color: #ff2233; animation: banner-flash 0.5s infinite alternate; }
+  @keyframes banner-flash {
+    from { opacity: 1; }
+    to   { opacity: 0.55; }
   }
 
   .sign {
@@ -27,9 +72,9 @@
     border: 10px solid #2b2b2b;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    padding: 3rem 3.5rem;
+    padding: 2.5rem 3rem;
     text-align: center;
-    max-width: 640px;
+    max-width: 680px;
     margin: 2rem;
   }
 
@@ -47,7 +92,7 @@
   }
 
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #2b2b2b;
@@ -55,29 +100,63 @@
   }
 
   .counter {
-    font-size: 7rem;
+    font-size: 6.5rem;
     font-weight: bold;
     color: #b3001b;
     background: #1a1a1a;
     border: 4px inset #555;
     border-radius: 8px;
     display: inline-block;
-    padding: 0.5rem 2.5rem;
-    margin: 1.5rem 0;
+    padding: 0.4rem 2.2rem;
+    margin: 1.2rem 0 0.4rem;
     font-variant-numeric: tabular-nums;
     text-shadow: 0 0 12px rgba(255, 40, 60, 0.8);
   }
 
+  .ticker {
+    font-size: 1.05rem;
+    color: #33ff66;
+    background: #1a1a1a;
+    border: 3px inset #555;
+    border-radius: 6px;
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.2rem;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 8px rgba(60, 255, 120, 0.7);
+    letter-spacing: 1px;
+  }
+
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #555;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-style: italic;
+    line-height: 1.5;
+  }
+
+  .record-board {
+    border: 3px double #2b2b2b;
+    border-radius: 8px;
+    background: #f7efd3;
+    padding: 0.7rem 1rem;
+    margin: 0 auto 1.6rem;
+    max-width: 420px;
+    font-size: 0.9rem;
+    color: #2b2b2b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .record-board .record-days { font-size: 1.5rem; font-weight: bold; }
+  .record-board .new-record {
+    color: #b3001b;
+    font-weight: bold;
+    animation: banner-flash 0.7s infinite alternate;
   }
 
   button {
     font-family: inherit;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -86,79 +165,671 @@
     border: none;
     border-bottom: 6px solid #6e0011;
     border-radius: 10px;
-    padding: 1rem 2rem;
+    padding: 0.9rem 1.9rem;
     cursor: pointer;
     transition: transform 0.05s ease;
   }
-
   button:hover { background: #d40020; }
-  button:active {
-    transform: translateY(4px);
-    border-bottom-width: 2px;
+  button:active { transform: translateY(4px); border-bottom-width: 2px; }
+  button.secondary {
+    background: #555;
+    border-bottom-color: #333;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.3rem;
+  }
+  button.secondary:hover { background: #6a6a6a; }
+  button:disabled {
+    background: #999;
+    border-bottom-color: #777;
+    cursor: not-allowed;
   }
 
   .celebration {
-    margin-top: 1.25rem;
-    font-size: 1.1rem;
+    margin-top: 1.1rem;
+    font-size: 1.05rem;
     color: #2b7a2b;
     font-weight: bold;
     min-height: 1.4rem;
   }
+
+  .site-footer {
+    margin-top: 1.6rem;
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 0.5px;
+  }
+  .site-footer a { color: #6e0011; }
+
+  /* ---------- Court-martial modal ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #fffbe8;
+    border: 8px solid #2b2b2b;
+    border-radius: 10px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem 2.2rem;
+    text-align: left;
+    position: relative;
+  }
+  .modal h2 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px double #2b2b2b;
+    padding-bottom: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .modal .form-ref {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
+  }
+  .modal label { display: block; font-size: 0.9rem; margin: 0.8rem 0 0.3rem; font-weight: bold; }
+  .modal input[type="text"], .modal textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+    border: 2px solid #2b2b2b;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .modal textarea { min-height: 90px; resize: vertical; }
+  .modal .radio-row { display: flex; gap: 1.2rem; font-size: 0.95rem; }
+  .modal .radio-row label { font-weight: normal; margin: 0.3rem 0; }
+  .modal .word-count { font-size: 0.75rem; color: #888; margin-top: 0.2rem; }
+  .modal .word-count.ok { color: #2b7a2b; font-weight: bold; }
+  .modal .error { color: #b3001b; font-size: 0.85rem; font-weight: bold; margin-top: 0.6rem; min-height: 1.2rem; }
+  .modal .modal-actions { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.4rem; }
+
+  .captcha-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 0.8rem;
+  }
+  .captcha-tile {
+    font-size: 2.6rem;
+    text-align: center;
+    padding: 0.9rem 0;
+    background: #fff;
+    border: 2px solid #2b2b2b;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .captcha-tile.selected {
+    background: #cfe8cf;
+    border-color: #2b7a2b;
+    box-shadow: inset 0 0 0 3px #2b7a2b;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 26px;
+    background: #ddd;
+    border: 2px solid #2b2b2b;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: repeating-linear-gradient(45deg, #b3001b, #b3001b 12px, #8a0015 12px, #8a0015 24px);
+    transition: width 0.25s linear;
+  }
+  .reflection-msg { font-style: italic; color: #555; margin-top: 0.7rem; min-height: 1.3rem; font-size: 0.9rem; }
+
+  .stamp {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2b7a2b;
+    border: 5px solid #2b7a2b;
+    border-radius: 8px;
+    padding: 0.3rem 1.2rem;
+    transform: rotate(-8deg);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 1rem 0;
+  }
+
+  .confetti-medal {
+    position: fixed;
+    top: -50px;
+    font-size: 2rem;
+    z-index: 200;
+    pointer-events: none;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
 </style>
 </head>
 <body>
+  <div class="defcon-banner" id="defconBanner">READINESS: GREEN</div>
+
   <div class="sign">
     <div class="bolts"><div class="bolt"></div><div class="bolt"></div></div>
     <h1>Days Since Scott &amp; Igor<br>Played General Orders</h1>
     <div class="counter" id="days">0</div>
-    <p class="subtitle">This workplace-safety-style sign is legally binding.</p>
+    <div class="ticker" id="ticker">T+00d 00:00:00.000</div>
+    <p class="subtitle" id="subtitle">This workplace-safety-style sign is legally binding.</p>
+
+    <div class="record-board" id="recordBoard">
+      🏆 Longest Drought In Franchise History<br>
+      <span class="record-days" id="recordDays">0</span> days
+      <div id="recordNote" style="font-size:0.75rem; text-transform:none; letter-spacing:0;"></div>
+    </div>
+
     <button id="playedBtn">Played General Orders</button>
     <p class="celebration" id="celebration"></p>
     <div class="bolts" style="margin-top:1.5rem; margin-bottom:0;"><div class="bolt"></div><div class="bolt"></div></div>
+    <p class="site-footer">
+      v4.2.0-hotfix.7 &middot; SLA 99.999% &middot;
+      <a href="status.html">System Status</a> &middot;
+      <a href="status.json">API</a> &middot;
+      <a href="https://github.com/scgrandpre/days-since-general-orders">Source</a>
+    </p>
+  </div>
+
+  <!-- ---------- COURT-MARTIAL RESET FLOW ---------- -->
+  <div class="modal-overlay" id="courtMartial">
+    <div class="modal">
+      <!-- Step 0: intro -->
+      <div class="cm-step" data-step="0">
+        <div class="form-ref">Form GO-27B/6 &middot; Rev. 14 &middot; Approved by the Joint Chiefs of Sitting Down</div>
+        <h2>Application for Counter Reset</h2>
+        <p style="font-size:0.95rem; line-height:1.6;">
+          You are hereby summoned before the Board of Gaming Inquiry.
+          Resetting this counter is a solemn act. False testimony
+          (see: <em>The Igor Incident, July 2026</em>) will be entered
+          into the permanent record.
+        </p>
+        <div class="modal-actions">
+          <button class="secondary cm-cancel">Desert</button>
+          <button class="cm-next">Testify</button>
+        </div>
+      </div>
+
+      <!-- Step 1: deposition -->
+      <div class="cm-step" data-step="1" hidden>
+        <div class="form-ref">Deposition &middot; Section 1 of 3</div>
+        <h2>Sworn Deposition</h2>
+        <label>Who won?</label>
+        <div class="radio-row">
+          <label><input type="radio" name="winner" value="Scott"> Scott</label>
+          <label><input type="radio" name="winner" value="Igor"> Igor</label>
+          <label><input type="radio" name="winner" value="Disputed"> Disputed (typical)</label>
+        </div>
+        <label for="finalScore">Final score</label>
+        <input type="text" id="finalScore" placeholder="e.g. 12–9, or 'total annihilation'">
+        <label for="testimony">Describe one moment of the game (minimum 20 words)</label>
+        <textarea id="testimony" placeholder="It was the third turn when Igor, drunk with power..."></textarea>
+        <div class="word-count" id="wordCount">0 / 20 words</div>
+        <div class="error" id="depositionError"></div>
+        <div class="modal-actions">
+          <button class="secondary cm-cancel">Desert</button>
+          <button class="cm-next" id="depositionNext">Submit Testimony</button>
+        </div>
+      </div>
+
+      <!-- Step 2: captcha -->
+      <div class="cm-step" data-step="2" hidden>
+        <div class="form-ref">Identity Verification &middot; Section 2 of 3</div>
+        <h2>Prove You Are A Board Gamer</h2>
+        <p style="font-size:0.9rem;">Select <strong>all</strong> tiles containing board games.</p>
+        <div class="captcha-grid" id="captchaGrid"></div>
+        <div class="error" id="captchaError"></div>
+        <div class="modal-actions">
+          <button class="secondary cm-cancel">Desert</button>
+          <button class="cm-next" id="captchaNext">Verify</button>
+        </div>
+      </div>
+
+      <!-- Step 3: reflection -->
+      <div class="cm-step" data-step="3" hidden>
+        <div class="form-ref">Mandatory Reflection Period &middot; Section 3 of 3</div>
+        <h2>Reflect On Your Service</h2>
+        <p style="font-size:0.9rem;">Per regulation GO-1024 §7(c), a ten (10) second reflection period is required. Do not look away.</p>
+        <div class="progress-track"><div class="progress-fill" id="reflectionBar"></div></div>
+        <div class="reflection-msg" id="reflectionMsg">Initializing reflection…</div>
+        <div class="modal-actions">
+          <button class="secondary cm-cancel">Desert</button>
+          <button class="cm-next" id="reflectionNext" disabled>Reflecting…</button>
+        </div>
+      </div>
+
+      <!-- Step 4: approved -->
+      <div class="cm-step" data-step="4" hidden>
+        <div class="form-ref">Disposition</div>
+        <h2>Ruling of the Board</h2>
+        <div style="text-align:center;">
+          <div class="stamp">Approved</div>
+          <p style="font-size:0.95rem;">Your testimony has been archived in triplicate and immediately shredded. The counter may be reset.</p>
+        </div>
+        <div class="modal-actions">
+          <button class="secondary cm-cancel">Desert Anyway</button>
+          <button id="finalResetBtn">Reset The Counter</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 <script>
+  /* ============================================================
+   * CONFIG — a.k.a. the single source of truth, lovingly hardcoded
+   * ============================================================ */
   const DEFAULT_LAST_PLAYED = "2026-06-15";
   const STORAGE_KEY = "lastPlayedGeneralOrders";
   const VERSION_KEY = "generalOrdersDataVersion";
+  const RECORD_KEY = "generalOrdersRecord";
   // Bump this to wipe everyone's saved resets (e.g. after a false alarm).
   const DATA_VERSION = "2";
+  const MS_PER_DAY = 86400000;
 
   if (localStorage.getItem(VERSION_KEY) !== DATA_VERSION) {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.setItem(VERSION_KEY, DATA_VERSION);
   }
 
-  function daysSince(dateStr) {
-    const [y, m, d] = dateStr.split("-").map(Number);
-    const last = new Date(y, m - 1, d);
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return Math.max(0, Math.round((today - last) / 86400000));
+  /* ============================================================
+   * TIME KEEPING
+   * ============================================================ */
+  function lastPlayedMs() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return new Date(stored).getTime();
+    const [y, m, d] = DEFAULT_LAST_PLAYED.split("-").map(Number);
+    return new Date(y, m - 1, d).getTime();
   }
 
+  function elapsed() {
+    return Math.max(0, Date.now() - lastPlayedMs());
+  }
+
+  function daysElapsed() {
+    return Math.floor(elapsed() / MS_PER_DAY);
+  }
+
+  /* ============================================================
+   * DEFCON SUBSYSTEM
+   * ============================================================ */
+  const DEFCON_LEVELS = [
+    { min: 100, level: 1, label: "DEFCON 1 — GAME-NIGHT EXTINCTION EVENT", cls: "level-1" },
+    { min: 60,  level: 1, label: "DEFCON 1 — TOTAL STRATEGIC COLLAPSE", cls: "level-1" },
+    { min: 30,  level: 2, label: "DEFCON 2 — CRITICAL GAMING DEFICIT", cls: "level-2" },
+    { min: 15,  level: 3, label: "DEFCON 3 — HIGH ALERT: ORDERS OVERDUE", cls: "level-3" },
+    { min: 8,   level: 4, label: "DEFCON 4 — READINESS: ELEVATED", cls: "level-4" },
+    { min: 0,   level: 5, label: "DEFCON 5 — READINESS: GREEN", cls: "" },
+  ];
+
+  function currentDefcon(days) {
+    return DEFCON_LEVELS.find((l) => days >= l.min);
+  }
+
+  const EULOGY =
+    "In loving memory of game night. “They said they’d play again soon.” — Everyone, repeatedly. " +
+    "Flowers may be sent to the unopened box on the shelf.";
+
+  function applyDefcon(days) {
+    const d = currentDefcon(days);
+    const banner = document.getElementById("defconBanner");
+    banner.textContent = d.label;
+    banner.className = "defcon-banner " + d.cls;
+    document.body.className = "";
+    if (d.level <= 2) document.body.classList.add("defcon-" + d.level);
+    const subtitle = document.getElementById("subtitle");
+    if (days >= 100) {
+      document.body.classList.add("eulogy-mode");
+      subtitle.textContent = EULOGY;
+    } else {
+      subtitle.textContent = "This workplace-safety-style sign is legally binding.";
+    }
+    return d;
+  }
+
+  /* ============================================================
+   * RECORD BOARD
+   * ============================================================ */
+  function getRecord() {
+    try {
+      const r = JSON.parse(localStorage.getItem(RECORD_KEY));
+      if (r && typeof r.days === "number") return r;
+    } catch (e) { /* corrupted record: history is written by the victors */ }
+    return null;
+  }
+
+  function renderRecord() {
+    const current = daysElapsed();
+    let record = getRecord();
+    const note = document.getElementById("recordNote");
+    if (!record || current >= record.days) {
+      document.getElementById("recordDays").textContent = current;
+      note.innerHTML = record && current > record.days
+        ? '<span class="new-record">★ RECORD IN PROGRESS — YOU ARE LIVING THROUGH HISTORY ★</span>'
+        : "The Great Silence of Summer ’26 (ongoing)";
+    } else {
+      document.getElementById("recordDays").textContent = record.days;
+      note.textContent = "Set " + record.ended + ". Current attempt: " + current + " days.";
+    }
+  }
+
+  /* ============================================================
+   * RENDER LOOP — 60fps for a number that changes daily. You're welcome.
+   * ============================================================ */
+  function pad(n, w) { return String(n).padStart(w, "0"); }
+
+  let lastDefconLevel = null;
+
   function render() {
-    const lastPlayed = localStorage.getItem(STORAGE_KEY) || DEFAULT_LAST_PLAYED;
-    document.getElementById("days").textContent = daysSince(lastPlayed);
+    const ms = elapsed();
+    const days = Math.floor(ms / MS_PER_DAY);
+    let rem = ms % MS_PER_DAY;
+    const h = Math.floor(rem / 3600000); rem %= 3600000;
+    const m = Math.floor(rem / 60000); rem %= 60000;
+    const s = Math.floor(rem / 1000);
+    const milli = Math.floor(rem % 1000);
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("ticker").textContent =
+      "T+" + pad(days, 2) + "d " + pad(h, 2) + ":" + pad(m, 2) + ":" + pad(s, 2) + "." + pad(milli, 3);
+
+    const d = applyDefcon(days);
+    if (d.level !== lastDefconLevel) {
+      lastDefconLevel = d.level;
+      renderRecord();
+    }
+    requestAnimationFrame(render);
+  }
+
+  /* ============================================================
+   * AUDIO CORPS (Web Audio synth — no bugler was available)
+   * ============================================================ */
+  let audioCtx = null;
+  function ctx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return audioCtx;
+  }
+
+  function playNote(freq, when, dur, vol = 0.12, type = "triangle") {
+    const c = ctx();
+    const osc = c.createOscillator();
+    const gain = c.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0, c.currentTime + when);
+    gain.gain.linearRampToValueAtTime(vol, c.currentTime + when + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + when + dur);
+    osc.connect(gain).connect(c.destination);
+    osc.start(c.currentTime + when);
+    osc.stop(c.currentTime + when + dur + 0.05);
+  }
+
+  function playBugle() {
+    // Reveille-ish. The Army is not liable for this arrangement.
+    const G4 = 392, C5 = 523.25, E5 = 659.25;
+    [[G4,0,.18],[C5,.2,.18],[E5,.4,.18],[C5,.6,.18],[E5,.8,.35],[C5,1.2,.5]]
+      .forEach(([f,t,d]) => playNote(f, t, d));
+  }
+
+  function playTaps() {
+    const G4 = 392, C5 = 523.25, E5 = 659.25;
+    [[G4,0,.5],[G4,.7,.25],[C5,1.0,1.1],[G4,2.3,.5],[C5,3.0,.5],[E5,3.6,1.4]]
+      .forEach(([f,t,d]) => playNote(f, t, d, 0.1, "sine"));
+  }
+
+  function playKlaxon() {
+    for (let i = 0; i < 3; i++) {
+      playNote(660, i * 0.5, 0.22, 0.06, "square");
+      playNote(440, i * 0.5 + 0.25, 0.22, 0.06, "square");
+    }
+  }
+
+  function playFanfare() {
+    const C5 = 523.25, E5 = 659.25, G5 = 783.99, C6 = 1046.5;
+    [[C5,0,.15],[E5,.15,.15],[G5,.3,.15],[C6,.45,.6]]
+      .forEach(([f,t,d]) => playNote(f, t, d, 0.14));
+  }
+
+  // Browsers forbid autoplay, so the bugler waits for your first click.
+  let soundArmed = false;
+  document.addEventListener("pointerdown", () => {
+    if (soundArmed) return;
+    soundArmed = true;
+    const days = daysElapsed();
+    if (days >= 60) playTaps();
+    else playBugle();
+    if (currentDefcon(days).level <= 2 && days < 60) setTimeout(playKlaxon, 1600);
+  }, { once: false });
+
+  /* ============================================================
+   * COURT-MARTIAL RESET FLOW
+   * ============================================================ */
+  const overlay = document.getElementById("courtMartial");
+  const steps = [...document.querySelectorAll(".cm-step")];
+  let reflectionTimer = null;
+
+  function showStep(n) {
+    steps.forEach((s) => (s.hidden = s.dataset.step !== String(n)));
+    if (n === 2) buildCaptcha();
+    if (n === 3) startReflection();
+  }
+
+  function closeCourtMartial(deserted) {
+    overlay.classList.remove("open");
+    if (reflectionTimer) { clearInterval(reflectionTimer); reflectionTimer = null; }
+    if (deserted) {
+      document.getElementById("celebration").textContent =
+        "Court-martial adjourned. The counter marches on.";
+    }
   }
 
   document.getElementById("playedBtn").addEventListener("click", () => {
-    if (!confirm("On your honor: did you REALLY play General Orders?")) {
-      document.getElementById("celebration").textContent =
-        "Stand down, soldier. The counter marches on.";
+    document.getElementById("celebration").textContent = "";
+    overlay.classList.add("open");
+    showStep(0);
+    console.log("%c[TRIBUNAL] Court-martial convened. All rise.", "color:#b3001b;font-weight:bold");
+  });
+
+  overlay.querySelectorAll(".cm-cancel").forEach((b) =>
+    b.addEventListener("click", () => closeCourtMartial(true))
+  );
+
+  // Step 0 -> 1
+  steps[0].querySelector(".cm-next").addEventListener("click", () => showStep(1));
+
+  // Step 1: deposition validation
+  const testimony = document.getElementById("testimony");
+  function wordCount() {
+    return testimony.value.trim().split(/\s+/).filter(Boolean).length;
+  }
+  testimony.addEventListener("input", () => {
+    const n = wordCount();
+    const el = document.getElementById("wordCount");
+    el.textContent = n + " / 20 words";
+    el.className = "word-count" + (n >= 20 ? " ok" : "");
+  });
+
+  document.getElementById("depositionNext").addEventListener("click", () => {
+    const winner = document.querySelector('input[name="winner"]:checked');
+    const score = document.getElementById("finalScore").value.trim();
+    const err = document.getElementById("depositionError");
+    if (!winner) { err.textContent = "Objection: the Board demands to know who won."; return; }
+    if (!score) { err.textContent = "Objection: a war without a score is merely an argument."; return; }
+    if (wordCount() < 20) { err.textContent = "Objection: testimony insufficiently dramatic. 20 words minimum."; return; }
+    err.textContent = "";
+    console.log("%c[TRIBUNAL] Deposition received:", "color:#2b7a2b", {
+      winner: winner.value, score, testimony: testimony.value, archivedTo: "/dev/null",
+    });
+    showStep(2);
+  });
+
+  // Step 2: captcha
+  const CAPTCHA_TILES = [
+    { e: "♟️", boardGame: true }, { e: "🎲", boardGame: true }, { e: "🀄", boardGame: true },
+    { e: "🎸", boardGame: false }, { e: "🍕", boardGame: false }, { e: "🚗", boardGame: false },
+    { e: "🐈", boardGame: false }, { e: "🏀", boardGame: false }, { e: "🌮", boardGame: false },
+  ];
+
+  function buildCaptcha() {
+    const grid = document.getElementById("captchaGrid");
+    grid.innerHTML = "";
+    [...CAPTCHA_TILES]
+      .sort(() => Math.random() - 0.5)
+      .forEach((t) => {
+        const div = document.createElement("div");
+        div.className = "captcha-tile";
+        div.textContent = t.e;
+        div.dataset.boardGame = t.boardGame;
+        div.addEventListener("click", () => div.classList.toggle("selected"));
+        grid.appendChild(div);
+      });
+  }
+
+  document.getElementById("captchaNext").addEventListener("click", () => {
+    const tiles = [...document.querySelectorAll(".captcha-tile")];
+    const correct = tiles.every(
+      (t) => (t.dataset.boardGame === "true") === t.classList.contains("selected")
+    );
+    const err = document.getElementById("captchaError");
+    if (!correct) {
+      err.textContent = "Verification failed. A true board gamer would know. Try again.";
+      buildCaptcha();
       return;
     }
-    const now = new Date();
-    const today = [
-      now.getFullYear(),
-      String(now.getMonth() + 1).padStart(2, "0"),
-      String(now.getDate()).padStart(2, "0"),
-    ].join("-");
-    localStorage.setItem(STORAGE_KEY, today);
-    render();
-    document.getElementById("celebration").textContent =
-      "Huzzah! The generals have issued their orders. 🎖️";
+    err.textContent = "";
+    showStep(3);
   });
+
+  // Step 3: reflection period
+  const REFLECTIONS = [
+    "Reflecting on your service…",
+    "Consulting the generals…",
+    "Verifying honor levels…",
+    "Filing paperwork in triplicate…",
+    "Cross-referencing the Igor Incident…",
+    "Polishing the medals…",
+  ];
+
+  function startReflection() {
+    const bar = document.getElementById("reflectionBar");
+    const msg = document.getElementById("reflectionMsg");
+    const btn = document.getElementById("reflectionNext");
+    btn.disabled = true;
+    btn.textContent = "Reflecting…";
+    bar.style.width = "0%";
+    let tick = 0;
+    if (reflectionTimer) clearInterval(reflectionTimer);
+    reflectionTimer = setInterval(() => {
+      tick++;
+      bar.style.width = Math.min(100, tick * 2.5) + "%";
+      if (tick % 10 === 1) msg.textContent = REFLECTIONS[Math.floor(tick / 10) % REFLECTIONS.length];
+      if (tick >= 40) {
+        clearInterval(reflectionTimer);
+        reflectionTimer = null;
+        btn.disabled = false;
+        btn.textContent = "I Have Reflected";
+        msg.textContent = "Reflection complete. You may proceed.";
+      }
+    }, 250);
+  }
+
+  document.getElementById("reflectionNext").addEventListener("click", () => showStep(4));
+
+  // Step 4: the actual reset
+  document.getElementById("finalResetBtn").addEventListener("click", () => {
+    const droughtEnded = daysElapsed();
+    const record = getRecord();
+    let recordMsg = "";
+    if (!record || droughtEnded > record.days) {
+      localStorage.setItem(RECORD_KEY, JSON.stringify({
+        days: droughtEnded,
+        ended: new Date().toISOString().slice(0, 10),
+      }));
+      recordMsg = " New franchise record: " + droughtEnded + " days. Somber applause.";
+    }
+    localStorage.setItem(STORAGE_KEY, new Date().toISOString());
+    closeCourtMartial(false);
+    renderRecord();
+    playFanfare();
+    document.getElementById("celebration").textContent =
+      "Huzzah! The generals have issued their orders. 🎖️" + recordMsg;
+    console.log("%c[TRIBUNAL] Reset APPROVED. Counter zeroed with full military honors.", "color:#2b7a2b;font-weight:bold");
+  });
+
+  /* ============================================================
+   * KONAMI CODE — for decorated veterans only
+   * ============================================================ */
+  const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+  let konamiIdx = 0;
+  document.addEventListener("keydown", (e) => {
+    konamiIdx = e.key === KONAMI[konamiIdx] ? konamiIdx + 1 : (e.key === KONAMI[0] ? 1 : 0);
+    if (konamiIdx === KONAMI.length) {
+      konamiIdx = 0;
+      medalParade();
+    }
+  });
+
+  function medalParade() {
+    console.log("%c[HONORS] Konami code accepted. Commencing medal parade.", "color:#f4c430;font-weight:bold");
+    playFanfare();
+    const MEDALS = ["🎖️", "🫡", "🎲", "♟️", "🏆", "📯"];
+    for (let i = 0; i < 60; i++) {
+      const el = document.createElement("div");
+      el.className = "confetti-medal";
+      el.textContent = MEDALS[i % MEDALS.length];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = 2 + Math.random() * 3 + "s";
+      el.style.animationDelay = Math.random() * 1.5 + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 7000);
+    }
+  }
+
+  /* ============================================================
+   * CONSOLE BOOT SEQUENCE — hi, Igor
+   * ============================================================ */
+  (function bootSequence() {
+    const banner = [
+      "  ____                           _    ___          _               ",
+      " / ___| ___ _ __   ___ _ __ __ _| |  / _ \\ _ __ __| | ___ _ __ ___ ",
+      "| |  _ / _ \\ '_ \\ / _ \\ '__/ _` | | | | | | '__/ _` |/ _ \\ '__/ __|",
+      "| |_| |  __/ | | |  __/ | | (_| | | | |_| | | | (_| |  __/ |  \\__ \\",
+      " \\____|\\___|_| |_|\\___|_|  \\__,_|_|  \\___/|_|  \\__,_|\\___|_|  |___/",
+      "        D R O U G H T   M O N I T O R I N G   S Y S T E M          ",
+    ].join("\n");
+    console.log("%c" + banner, "color:#b3001b;font-family:monospace");
+    const logs = [
+      ["boot", "DroughtComputationEngine v4.2.0-hotfix.7 initializing…"],
+      ["boot", "Loading 1 (one) date from persistent storage… done in 0.0003ms"],
+      ["boot", "Spinning up 60fps render loop for a number that changes once per day… done"],
+      ["net ", "TELEMETRY: reporting readiness status to NORAD… connection refused (as expected)"],
+      ["sec ", "Igor-tamper-detection subsystem: ARMED"],
+      ["ok  ", "All systems nominal. Current mission: waiting."],
+    ];
+    logs.forEach(([tag, msg], i) =>
+      setTimeout(() => console.log("%c[" + tag + "]%c " + msg, "color:#f4c430;font-weight:bold", "color:inherit"), i * 300)
+    );
+    setTimeout(() => console.log("%cPsst — try the Konami code. ↑↑↓↓←→←→BA", "color:#888;font-style:italic"), 2200);
+  })();
 
   render();
 </script>

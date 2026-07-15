@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Orders — System Status</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+    padding: 2.5rem 1rem 4rem;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; }
+  header .logo { font-size: 1.8rem; }
+  header h1 { font-size: 1.3rem; font-weight: 600; }
+  header .sub { font-size: 0.8rem; color: #8b949e; }
+
+  .status-hero {
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    background: #3d1c00;
+    border: 1px solid #d29922;
+    margin-bottom: 2rem;
+  }
+  .status-hero .big { font-size: 1.25rem; font-weight: 700; color: #d29922; }
+  .status-hero .detail { font-size: 0.9rem; color: #c9d1d9; margin-top: 0.4rem; line-height: 1.5; }
+
+  h2 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin: 2rem 0 0.8rem; }
+
+  .component {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #161b22;
+    font-size: 0.95rem;
+  }
+  .component .note { font-size: 0.78rem; color: #8b949e; margin-top: 2px; }
+  .pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill.op { background: #0f2e18; color: #3fb950; border: 1px solid #238636; }
+  .pill.deg { background: #3d1c00; color: #d29922; border: 1px solid #9e6a03; }
+  .pill.out { background: #3d0c0c; color: #f85149; border: 1px solid #da3633; }
+
+  .uptime {
+    display: flex;
+    gap: 3px;
+    padding: 1rem 1.1rem;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    background: #161b22;
+    align-items: flex-end;
+  }
+  .uptime .bar {
+    flex: 1;
+    height: 34px;
+    border-radius: 2px;
+    background: #da3633;
+    min-width: 3px;
+  }
+  .uptime .bar.up { background: #3fb950; }
+  .uptime-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: #8b949e;
+    margin-top: 6px;
+    padding: 0 2px;
+  }
+  .uptime-pct { text-align: right; font-size: 0.8rem; color: #8b949e; margin-top: 6px; }
+
+  .incident {
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    background: #161b22;
+    padding: 1rem 1.2rem;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .incident .title { font-weight: 700; margin-bottom: 0.3rem; }
+  .incident .meta { font-size: 0.75rem; color: #8b949e; margin-bottom: 0.5rem; }
+  .incident .resolved { color: #3fb950; font-weight: 700; }
+  .incident .investigating { color: #d29922; font-weight: 700; }
+
+  footer { margin-top: 3rem; font-size: 0.78rem; color: #8b949e; text-align: center; line-height: 1.7; }
+  footer a { color: #58a6ff; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🎖️</div>
+    <div>
+      <h1>General Orders Operations Center</h1>
+      <div class="sub">Real-time availability of the Scott–Igor gaming platform</div>
+    </div>
+  </header>
+
+  <div class="status-hero">
+    <div class="big">⚠ Degraded Performance</div>
+    <div class="detail" id="heroDetail">
+      General Orders availability: <strong>DEGRADED</strong>. Root cause: scheduling.
+      ETA to resolution: unknown. Engineers (Scott, Igor) have been paged repeatedly and are ignoring it.
+    </div>
+  </div>
+
+  <h2>Components</h2>
+  <div class="component">
+    <div>General Orders (the game itself)<div class="note">Physically fine. Emotionally neglected. Sitting on a shelf.</div></div>
+    <span class="pill op">Operational</span>
+  </div>
+  <div class="component">
+    <div>Scheduling Subsystem<div class="note">Outage began 2026-06-15. No engineer has picked up the incident.</div></div>
+    <span class="pill out">Major Outage</span>
+  </div>
+  <div class="component">
+    <div>Scott Availability<div class="note">Reports "we should totally play soon" at regular intervals.</div></div>
+    <span class="pill op">Operational</span>
+  </div>
+  <div class="component">
+    <div>Igor Trustworthiness<div class="note">Degraded following unauthorized button activity (see incident #0002).</div></div>
+    <span class="pill deg">Degraded</span>
+  </div>
+  <div class="component">
+    <div>Reset Button Integrity<div class="note">Hardened with a court-martial workflow after incident #0002.</div></div>
+    <span class="pill op">Operational</span>
+  </div>
+
+  <h2>Game-Night Uptime — Last 90 Days</h2>
+  <div class="uptime" id="uptimeBars"></div>
+  <div class="uptime-legend"><span id="legendStart"></span><span>today</span></div>
+  <div class="uptime-pct" id="uptimePct"></div>
+
+  <h2>Incident History</h2>
+  <div class="incident">
+    <div class="title">#0002 — Unauthorized counter reset (false positive)</div>
+    <div class="meta">Opened 2026-07-15 &middot; Duration: ~4 hours &middot; Severity: SEV-1 (emotionally)</div>
+    A user (initials I.G.) activated the reset button despite no game having occurred.
+    Counter integrity was restored via emergency data-version bump.
+    Postmortem was blameless, but it was Igor.
+    <div style="margin-top:0.4rem"><span class="resolved">✓ Resolved</span> — mitigations deployed: honor-system dialog, sworn deposition, CAPTCHA, mandatory reflection period.
+    </div>
+  </div>
+  <div class="incident">
+    <div class="title">#0001 — Extended scheduling outage ("The Great Silence of Summer ’26")</div>
+    <div class="meta">Opened 2026-06-15 &middot; Duration: <span id="incidentDays">…</span> days and counting &middot; Severity: SEV-1</div>
+    All game-night traffic has been dropped since June 15. Retries ("we should play this weekend")
+    have exponentially backed off into silence. Failover to other board games was deemed unacceptable
+    by stakeholders.
+    <div style="margin-top:0.4rem"><span class="investigating">● Investigating</span> — current mitigation: a website that shames both parties.</div>
+  </div>
+
+  <footer>
+    Subscribed to updates: 2 users (both responsible for the outage) <br>
+    <a href="index.html">← Back to the Board</a> &middot; <a href="status.json">Machine-readable status (JSON)</a><br>
+    This page is refreshed manually, with regret.
+  </footer>
+</div>
+
+<script>
+  const LAST_PLAYED = new Date(2026, 5, 15); // June 15, 2026
+  const MS_PER_DAY = 86400000;
+  const today = new Date();
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const daysSince = Math.max(0, Math.round((todayMidnight - LAST_PLAYED) / MS_PER_DAY));
+
+  document.getElementById("incidentDays").textContent = daysSince;
+
+  const WINDOW = 90;
+  const bars = document.getElementById("uptimeBars");
+  let upDays = 0;
+  for (let i = WINDOW - 1; i >= 0; i--) {
+    const day = new Date(todayMidnight.getTime() - i * MS_PER_DAY);
+    const played = day.getTime() === LAST_PLAYED.getTime();
+    if (played) upDays++;
+    const bar = document.createElement("div");
+    bar.className = "bar" + (played ? " up" : "");
+    bar.title = day.toISOString().slice(0, 10) + (played ? " — GAME PLAYED ✓" : " — no game (outage)");
+    bars.appendChild(bar);
+  }
+
+  const start = new Date(todayMidnight.getTime() - (WINDOW - 1) * MS_PER_DAY);
+  document.getElementById("legendStart").textContent = start.toISOString().slice(0, 10);
+  document.getElementById("uptimePct").textContent =
+    "Game-night uptime: " + ((upDays / WINDOW) * 100).toFixed(2) + "% (industry-leading, if the industry is disappointment)";
+</script>
+</body>
+</html>

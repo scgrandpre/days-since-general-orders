@@ -1,0 +1,35 @@
+name: Daily War Journal
+
+# Runs every day to recompute a number that changes by exactly 1 per day,
+# then commits it to the permanent historical record. Essential infrastructure.
+
+on:
+  schedule:
+    - cron: "0 12 * * *" # 1200 hours Zulu. The army rises early.
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  file-report:
+    name: File the daily drought report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report for duty
+        uses: actions/checkout@v4
+
+      - name: Compute the sacred number
+        run: node scripts/daily-report.mjs
+
+      - name: Commit to the permanent record
+        run: |
+          git config user.name "General Orders Adjutant"
+          git config user.email "adjutant@users.noreply.github.com"
+          git add status.json WAR_JOURNAL.md
+          if git diff --cached --quiet; then
+            echo "No changes to report. At ease."
+          else
+            git commit -m "War journal: $(date -u +%Y-%m-%d) drought report"
+            git push
+          fi
