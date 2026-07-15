@@ -120,6 +120,14 @@
 <script>
   const DEFAULT_LAST_PLAYED = "2026-06-15";
   const STORAGE_KEY = "lastPlayedGeneralOrders";
+  const VERSION_KEY = "generalOrdersDataVersion";
+  // Bump this to wipe everyone's saved resets (e.g. after a false alarm).
+  const DATA_VERSION = "2";
+
+  if (localStorage.getItem(VERSION_KEY) !== DATA_VERSION) {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.setItem(VERSION_KEY, DATA_VERSION);
+  }
 
   function daysSince(dateStr) {
     const [y, m, d] = dateStr.split("-").map(Number);
@@ -135,6 +143,11 @@
   }
 
   document.getElementById("playedBtn").addEventListener("click", () => {
+    if (!confirm("On your honor: did you REALLY play General Orders?")) {
+      document.getElementById("celebration").textContent =
+        "Stand down, soldier. The counter marches on.";
+      return;
+    }
     const now = new Date();
     const today = [
       now.getFullYear(),
