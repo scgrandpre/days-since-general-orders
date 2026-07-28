@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-07-27T14:24:25.502Z",
+  "generated_at": "2026-07-28T13:56:30.228Z",
   "last_played": "2026-06-15",
-  "days_since_played": 42,
+  "days_since_played": 43,
   "defcon": 2,
   "defcon_label": "CRITICAL GAMING DEFICIT",
-  "morale_percent": 58,
-  "memo": "DAY 42: SCOUTS REPORT SCOTT SAID 'WE SHOULD PLAY SOON.' SCOUTS ARE NOT HOPEFUL.",
+  "morale_percent": 57,
+  "memo": "DAY 43: IGOR WAS OBSERVED NEAR A BUTTON. HE HAS BEEN OBSERVED.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
