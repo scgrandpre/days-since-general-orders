@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-08-20T12:39:15.537Z",
+  "generated_at": "2026-08-21T12:37:45.966Z",
   "last_played": "2026-06-15",
-  "days_since_played": 66,
+  "days_since_played": 67,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
-  "morale_percent": 34,
-  "memo": "DAY 66: THE DICE HAVE NOT BEEN ROLLED. THE DICE DO NOT FORGET.",
+  "morale_percent": 33,
+  "memo": "DAY 67: COMMAND REVIEWED THE SITUATION AND SCHEDULED A REVIEW OF THE REVIEW.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
