@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-08-25T12:39:06.891Z",
+  "generated_at": "2026-08-26T12:42:36.259Z",
   "last_played": "2026-06-15",
-  "days_since_played": 71,
+  "days_since_played": 72,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
-  "morale_percent": 29,
-  "memo": "DAY 71: THE BOARD REMAINS FOLDED. THE PIECES REMAIN BAGGED. WE REMAIN PATIENT.",
+  "morale_percent": 28,
+  "memo": "DAY 72: SCOUTS REPORT SCOTT SAID 'WE SHOULD PLAY SOON.' SCOUTS ARE NOT HOPEFUL.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
