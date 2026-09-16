@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-09-15T16:08:49.888Z",
+  "generated_at": "2026-09-16T16:02:22.375Z",
   "last_played": "2026-06-15",
-  "days_since_played": 92,
+  "days_since_played": 93,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
-  "morale_percent": 8,
-  "memo": "DAY 92: SCOUTS REPORT SCOTT SAID 'WE SHOULD PLAY SOON.' SCOUTS ARE NOT HOPEFUL.",
+  "morale_percent": 7,
+  "memo": "DAY 93: IGOR WAS OBSERVED NEAR A BUTTON. HE HAS BEEN OBSERVED.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
