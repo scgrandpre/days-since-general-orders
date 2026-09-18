@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-09-17T16:08:47.409Z",
+  "generated_at": "2026-09-18T15:44:29.418Z",
   "last_played": "2026-06-15",
-  "days_since_played": 94,
+  "days_since_played": 95,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
-  "morale_percent": 6,
-  "memo": "DAY 94: SUPPLY LINES (SNACKS) REMAIN INTACT AND ENTIRELY UNUSED.",
+  "morale_percent": 5,
+  "memo": "DAY 95: A CALENDAR INVITE WAS DRAFTED, THEN ABANDONED. WINTER APPROACHES.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
