@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-09-18T15:44:29.418Z",
+  "generated_at": "2026-09-19T15:16:16.436Z",
   "last_played": "2026-06-15",
-  "days_since_played": 95,
+  "days_since_played": 96,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
-  "morale_percent": 5,
-  "memo": "DAY 95: A CALENDAR INVITE WAS DRAFTED, THEN ABANDONED. WINTER APPROACHES.",
+  "morale_percent": 4,
+  "memo": "DAY 96: THE DICE HAVE NOT BEEN ROLLED. THE DICE DO NOT FORGET.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
