@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-09-22T16:11:06.991Z",
+  "generated_at": "2026-09-23T16:00:15.433Z",
   "last_played": "2026-06-15",
-  "days_since_played": 99,
+  "days_since_played": 100,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
-  "morale_percent": 1,
-  "memo": "DAY 99: TROOPS ASKED 'WHAT ARE WE EVEN WAITING FOR.' NO ANSWER CAME.",
+  "morale_percent": 0,
+  "memo": "DAY 100: STILL NO ORDERS FROM THE GENERALS. MORALE HOLDS.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
