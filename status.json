@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-10-03T15:38:29.271Z",
+  "generated_at": "2026-10-04T16:22:20.602Z",
   "last_played": "2026-06-15",
-  "days_since_played": 110,
+  "days_since_played": 111,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
   "morale_percent": 0,
-  "memo": "DAY 110: STILL NO ORDERS FROM THE GENERALS. MORALE HOLDS.",
+  "memo": "DAY 111: THE BOARD REMAINS FOLDED. THE PIECES REMAIN BAGGED. WE REMAIN PATIENT.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
