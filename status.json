@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-10-21T16:32:00.499Z",
+  "generated_at": "2026-10-22T16:33:17.143Z",
   "last_played": "2026-06-15",
-  "days_since_played": 128,
+  "days_since_played": 129,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
   "morale_percent": 0,
-  "memo": "DAY 128: NO CONTACT WITH GAME NIGHT. TRANSMITTING SHAME ON ALL FREQUENCIES.",
+  "memo": "DAY 129: TROOPS ASKED 'WHAT ARE WE EVEN WAITING FOR.' NO ANSWER CAME.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
