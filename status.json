@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-11-09T21:53:12.329Z",
+  "generated_at": "2026-11-10T19:14:58.445Z",
   "last_played": "2026-06-15",
-  "days_since_played": 147,
+  "days_since_played": 148,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
   "morale_percent": 0,
-  "memo": "DAY 147: COMMAND REVIEWED THE SITUATION AND SCHEDULED A REVIEW OF THE REVIEW.",
+  "memo": "DAY 148: NO CONTACT WITH GAME NIGHT. TRANSMITTING SHAME ON ALL FREQUENCIES.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
