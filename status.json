@@ -1,12 +1,12 @@
 {
   "service": "general-orders-drought-monitor",
   "version": "4.2.0-hotfix.7",
-  "generated_at": "2026-11-15T18:26:01.953Z",
+  "generated_at": "2026-11-16T21:35:19.555Z",
   "last_played": "2026-06-15",
-  "days_since_played": 153,
+  "days_since_played": 154,
   "defcon": 1,
   "defcon_label": "TOTAL STRATEGIC COLLAPSE",
   "morale_percent": 0,
-  "memo": "DAY 153: IGOR WAS OBSERVED NEAR A BUTTON. HE HAS BEEN OBSERVED.",
+  "memo": "DAY 154: SUPPLY LINES (SNACKS) REMAIN INTACT AND ENTIRELY UNUSED.",
   "sla": "99.999% (of days, no game was played, meeting our target)"
 }
